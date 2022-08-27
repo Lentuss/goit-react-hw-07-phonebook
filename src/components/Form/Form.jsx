@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem } from 'redux/phonebookActions';
-import { nanoid } from 'nanoid';
 
+import { addData, getData } from '../../redux/phonebookOperations';
 import {
   ContactForm,
   FormLabel,
@@ -34,15 +33,15 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const newId = nanoid();
     const names = contacts.map(contact => contact.name.toLowerCase());
 
     if (names.includes(inputName.toLowerCase())) {
       alert(`Please, enter unique name. ${inputName} is already exist`);
       return;
     } else {
-      const contact = { id: newId, name: inputName, number: inputNumber };
-      dispatch(addItem(contact));
+      const contact = { name: inputName, number: inputNumber };
+      dispatch(addData(contact));
+      dispatch(getData()); /////////////////////////////asinc
     }
 
     e.currentTarget.reset();

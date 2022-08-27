@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { getData, removeData } from '../../redux/phonebookOperations';
 
 import Filter from '../Filter';
-import { deleteItem } from 'redux/phonebookActions';
 
 import {
   Contacts,
@@ -27,10 +27,11 @@ const ContactsList = ({ title }) => {
     );
   };
   const filteredContacts = getFilteresContacts(filterValue);
-
+  console.log('f: ', filteredContacts);
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contactsList));
-  }, [contactsList, filterValue]);
+    dispatch(getData());
+    console.log('worrrrrk');
+  }, [dispatch]);
 
   return (
     <Contacts>
@@ -45,7 +46,8 @@ const ContactsList = ({ title }) => {
             <DeleteButton
               type="button"
               onClick={() => {
-                dispatch(deleteItem(contact.id));
+                dispatch(removeData(contact.id));
+                dispatch(getData()); /////////////////////////////asinc
               }}
             >
               x Delete
