@@ -12,7 +12,5 @@ export const filter = createReducer('', {
 export const items = createReducer([], {
   [getData.pending]: (state, { payload: items }) => [],
   [getData.fulfilled]: (state, { payload: items }) => [...items],
-  [getData.rejected]: (state, action) => {
-    console.log(action.payload);
-  },
+  [getData.rejected]: (state, action) => action.payload,
 });

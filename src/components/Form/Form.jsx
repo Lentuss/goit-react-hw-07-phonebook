@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addData, getData } from '../../redux/phonebookOperations';
+import {
+  addData,
+  // getData
+} from '../../redux/phonebookOperations';
 import {
   ContactForm,
   FormLabel,
@@ -41,7 +44,7 @@ const Form = () => {
     } else {
       const contact = { name: inputName, number: inputNumber };
       dispatch(addData(contact));
-      dispatch(getData()); /////////////////////////////asinc
+      // dispatch(getData()); /////////////////////////////asinc
     }
 
     e.currentTarget.reset();
