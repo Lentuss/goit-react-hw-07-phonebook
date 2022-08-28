@@ -27,10 +27,8 @@ const ContactsList = ({ title }) => {
     );
   };
   const filteredContacts = getFilteresContacts(filterValue);
-  // console.log('f: ', filteredContacts);
   useEffect(() => {
     dispatch(getData());
-    console.log('worrrrrk');
   }, [dispatch]);
 
   return (
@@ -47,7 +45,6 @@ const ContactsList = ({ title }) => {
               type="button"
               onClick={() => {
                 dispatch(removeData(contact.id));
-                // dispatch(getData()); /////////////////////////////не подходит
               }}
             >
               x Delete
